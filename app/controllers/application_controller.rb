@@ -37,8 +37,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/login" do
-    user = User.find_by(:username => params[:username], :password => params[:password])
-     if user.username != "" && user.password != ""
+    user = User.find_by(:username => params[:username])
+     if user && user.password == params[:password]
        redirect "/login"
      else
        redirect "/failure"
